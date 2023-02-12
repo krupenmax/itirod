@@ -1,0 +1,64 @@
+:host {
+	width: 100%;
+	padding: 24px 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+::ng-deep .mat-snack-bar-container {
+	background-color: #fff;
+	color: #130101;
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+	color: #4b48c9;
+}
+
+h3 {
+	font-weight: 500;
+	color: #4b48c9;
+	font-size: 24px;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 100px 40px;
+	box-shadow: 0 4px 20px #0000002f;
+	border-radius: 8px;
+	animation-duration: 1s;
+	animation-name: popUp;
+	background-color: #fff;
+
+	mat-form-field {
+		width: 300px;
+	}
+
+	mat-icon:hover {
+		color: #4b48c9;
+	}
+
+	@keyframes popUp {
+		0% {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
+
+button {
+	margin-top: 12px;
+	border: 1px solid #4b48c9;
+	color: #4b48c9;
+	width: 117px;
+}

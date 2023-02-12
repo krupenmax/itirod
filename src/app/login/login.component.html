@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+	<h3>Авторизация</h3>
+	<mat-form-field appearance="fill">
+		<mat-label>Логин</mat-label>
+		<input matInput placeholder="username" formControlName="login">
+	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>Пароль</mat-label>
+		<input matInput placeholder="****" [type]="isPasswordVisible ? 'text' : 'password'" autocomplete="off"
+			formControlName="password">
+		<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="!isPasswordVisible">visibility</mat-icon>
+		<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="isPasswordVisible">visibility_off</mat-icon>
+	</mat-form-field>
+	<button mat-button (click)="login()">Войти</button>
+	<button mat-button (click)="openRegistration()">Регистрация</button>
+</form>

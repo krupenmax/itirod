@@ -1,0 +1,35 @@
+<div class="navbar">
+	<mat-button-toggle-group #toggler (change)="route($event.value)">
+		<mat-button-toggle [checked]="true" value="home">Главная</mat-button-toggle>
+		<mat-button-toggle value="account">Аккаунт</mat-button-toggle>
+	  </mat-button-toggle-group>
+</div>
+
+<section>
+	<div class="main-container">
+		<table>
+			<thead>
+				<th>Категория</th>
+				<th>Описание</th>
+				<th><mat-icon>stars</mat-icon></th>
+				<th></th>
+				<th>Кол-во людей</th>
+				<th><button mat-button (click)="addActivity()">Добавить</button></th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let activity of activities">
+					<td>{{activity.category}}</td>
+					<td>{{activity.description}}</td>
+					<td>
+						{{activity.rate}}
+					</td>
+					<td>
+						<mat-icon>star</mat-icon>
+					</td>
+					<td>{{activity.usersSubscribed.length}}</td>
+					<td><button mat-button (click)="viewActivity(activity)">Посмотреть</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

@@ -1,0 +1,84 @@
+:host {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	height: 100%;
+}
+
+::ng-deep .mat-snack-bar-container {
+	background-color: #fff;
+	color: #130101;
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+	color: #4b48c9;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 24px 	;
+
+	button:last-child {
+		margin-left: 24px;
+	}
+
+	button {
+		margin-top: 12px;
+		border: 1px solid #4b48c9;
+		color: #4b48c9;
+		width: 150px;
+		background-color: transparent;
+	}
+}
+
+section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	.description-container {
+		text-align: left;
+
+		h3 {
+			font-weight: 500;
+			font-size: 20px;
+		}
+	}
+
+	.activity-image {
+		display: flex;
+		justify-content: left;
+		align-items: flex-start;
+
+		img {
+			border: 2px solid #c8c5c5;
+		}
+	}
+}
+
+ul {
+	width: 100%;
+
+	label {
+		font-weight: 500;
+	}
+
+	li:last-child {
+
+		mat-icon:hover {
+			color: #4b48c9;
+			cursor: pointer;
+		}
+
+		a {
+			color: #000;
+		}
+
+		a:checked {
+			color: #000;
+		}
+	}
+}

@@ -1,0 +1,60 @@
+<section>
+	<div class="activity-image">
+		<img *ngIf="!activity.imageName"
+			[src]="activity.imageName ? activity.imageName : '../../assets/images/' + 'no-camera.png'"
+			width="200" height="200">
+	</div>
+	<div class="description-container">
+		<h3>Описание:</h3>
+		<div class="description">
+			{{activity.description}}
+		</div>
+	</div>
+	<ul>
+		<li>
+			<label>Категория:</label>
+			{{activity.category}}
+		</li>
+		<li>
+			<label>Рейтинг:</label>
+			{{activity.rate}}
+		</li>
+		<li>
+			<label>Кол-во подписанных людей:</label>
+			{{activity.usersSubscribed.length}}
+		</li>
+		<li *ngIf="activity.date">
+			<label>Дата:</label>
+			{{activity.date.toLocaleDateString()}}
+		</li>
+		<li *ngIf="activity.date">
+			<label>Время:</label>
+			{{activity.date.toLocaleTimeString()}}
+		</li>
+		<li *ngIf="activity.place">
+			<label>Место:</label>
+			{{activity.place}}
+			<a href="https://bobbyhadz.com/blog/typescript-get-current-date-and-time" target="_blank" title="Посмотреть на карте">
+				<mat-icon>not_listed_location</mat-icon>
+			</a>
+		</li>
+		<li>
+			<label>Создатель:</label>
+			<a *ngIf="activity.userOwner" target="_blank">{{activity.userOwner.name}}</a>
+			<a *ngIf="!activity.userOwner">
+				Анонимно
+			</a>
+		</li>
+	</ul>
+</section>
+<div class="footer">
+	<button mat-button mat-dialog-close>Закрыть</button>
+	<button mat-button *ngIf="!isSubscribed()" (click)="subscribe()">
+		Подписаться
+		<mat-icon>person_add</mat-icon>
+	</button>
+	<button mat-button *ngIf="isSubscribed()" (click)="unsubscribe()">
+		Отписаться
+		<mat-icon>person_outline</mat-icon>
+	</button>
+</div>

@@ -1,0 +1,39 @@
+<section>
+	<h3>Регистрация</h3>
+	<form [formGroup]="form">
+		<mat-form-field appearance="fill" [ngClass]="form.get('login')?.invalid ? 'invalid' : ''">
+			<mat-label>Логин</mat-label>
+			<input matInput formControlName="login">
+		</mat-form-field>
+		<mat-form-field appearance="fill" [ngClass]="form.get('password')?.invalid ? 'invalid' : ''">
+			<mat-label>Пароль</mat-label>
+			<input matInput placeholder="****" [type]="isPasswordVisible ? 'text' : 'password'" autocomplete="off"
+				formControlName="password">
+			<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="!isPasswordVisible">visibility</mat-icon>
+			<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="isPasswordVisible">visibility_off</mat-icon>
+		</mat-form-field>
+		<mat-form-field appearance="fill" [ngClass]="form.get('passwordRepeat')?.invalid ? 'invalid' : ''">
+			<mat-label>Подтверждение пароля</mat-label>
+			<input matInput placeholder="****" [type]="isPasswordVisible ? 'text' : 'password'" autocomplete="off"
+				formControlName="passwordRepeat">
+			<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="!isPasswordVisible">visibility</mat-icon>
+			<mat-icon matSuffix (click)="isPasswordVisible = !isPasswordVisible" *ngIf="isPasswordVisible">visibility_off</mat-icon>
+		</mat-form-field>
+		<mat-form-field appearance="fill" [ngClass]="form.get('name')?.invalid ? 'invalid' : ''">
+			<mat-label>Имя</mat-label>
+			<input matInput formControlName="name">
+		</mat-form-field>
+		<mat-form-field appearance="fill" [ngClass]="form.get('secondName')?.invalid ? 'invalid' : ''">
+			<mat-label>Фамилия</mat-label>
+			<input matInput formControlName="secondName">
+		</mat-form-field>
+		<div class="error-message" *ngIf="form.invalid && form.get('login')?.touched && form.get('password')?.touched
+			&& form.get('passwordRepeat')?.touched && form.get('name')?.touched && form.get('secondName')?.touched">
+			<label>Некорректная форма</label>
+		</div>
+	</form>
+</section>
+<div class="footer">
+	<button mat-button mat-dialog-close>Отмена</button>
+	<button mat-button (click)="addUser()">Зарегистрировать</button>
+</div>

@@ -1,0 +1,127 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 24px 40px;
+
+	button:last-child {
+		margin-left: 24px;
+	}
+}
+
+button {
+	margin-top: 12px;
+	border: 1px solid #4b48c9;
+	color: #4b48c9;
+	width: 150px;
+	background-color: transparent;
+}
+
+form {
+	padding: 24px 40px;
+	display: flex;
+	flex-direction: column;
+
+	div:nth-child(n) {
+		display: flex;
+		flex-direction: column;
+		align-items: right;
+		margin-bottom: 10px;
+	}
+
+	button {
+		width: 100%;
+	}
+
+	textarea {
+		resize: none;
+		height: 100px;
+		font-size: 15px;
+		font-family: "Open Sans";
+		outline: none;
+		font-weight: 400;
+		letter-spacing: 0.0005em;
+		padding: 7px 8px;
+		border: 1px solid #d5cccc;
+	}
+
+	textarea:focus {
+		border: 1px solid #4b48c9;
+	}
+
+	div:nth-child(3) {
+		button {
+			width: 100%;
+		}
+	}
+
+	mat-form-field {
+		width: 100px;
+		height: 32px;
+
+		input {
+			border: none;
+		}
+	}
+
+	label {
+		color: #130101	;
+		margin-bottom: 8px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	input {
+		outline: none;
+		padding: 7px 8px;
+		border-radius: 4px;
+		border: 1px solid #d5cccc;
+	}
+
+	input:focus {
+		border: 1px solid #4b48c9
+	}
+
+	.file-input {
+		visibility: hidden;
+		height: 1px;
+	}
+
+	.file-input-label {
+		width: 100%;
+		text-align: center;
+		border: 1px solid #4b48c9;
+		border-radius: 4px;
+		vertical-align: middle;
+		color: #4b48c9;
+		font-weight: 500;
+		padding: 10px 0;
+
+		&:hover {
+			background-color: #F5F5F5;
+			cursor: pointer;
+		}
+
+		&:active {
+			background-color: #E4E3EF;
+		}
+
+		mat-icon {
+			height: 12px;
+			line-height: 12px;
+			color: green;
+			animation-name: popOutCheck;
+			animation-duration: .5s;
+
+			@keyframes popOutCheck {
+				0% {
+					opacity: 0;
+					transform: rotate(360deg);
+				}
+				100% {
+					opacity: 1;
+					transform: rotate(0);
+				}
+			}
+		}
+	}
+}

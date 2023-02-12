@@ -1,0 +1,54 @@
+button {
+	margin-top: 12px;
+	border: 1px solid #4b48c9;
+	color: #4b48c9;
+	width: 150px;
+}
+
+h3 {
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+
+	button:last-child {
+		margin-left: 24px;
+	}
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: left;
+	flex-direction: column;
+
+	& div:nth-child(n) {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		label {
+			margin-right: 32px;
+			color: #888888;
+			margin-bottom: 8px;
+		}
+	}
+
+	mat-icon:hover {
+		color: #4b48c9;
+	}
+}
+
+.error-message {
+	label {
+		color: red !important;
+	}
+}
+
+mat-label {
+	user-select: none;
+	cursor: default;
+}
