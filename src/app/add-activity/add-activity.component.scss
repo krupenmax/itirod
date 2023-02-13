@@ -125,3 +125,28 @@ form {
 		}
 	}
 }
+
+.marked {
+	color: green;
+
+	mat-icon {
+		animation-name: popOutCheck;
+		animation-duration: .5s;
+	}
+}
+
+.invalid {
+	border: 1px solid red !important;
+}
+
+::ng-deep .mat-snack-bar-container {
+	background-color: #fff;
+	color: red;
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+	color: #130101;
+}

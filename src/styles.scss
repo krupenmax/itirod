@@ -34,6 +34,7 @@ $Lab-theme: mat.define-light-theme((
 @include mat.all-component-themes($Lab-theme);
 
 @import url("./assets/fonts/fonts.scss");
+@import "~leaflet/dist/leaflet.css";
 
 html {
   	width: 100%;

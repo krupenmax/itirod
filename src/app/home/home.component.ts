@@ -18,10 +18,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 	styleUrls: ['./home.component.scss'],
 	standalone: true,
 	providers: [ MatDatepickerModule, MatNativeDateModule ],
-	imports: [CommonModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDialogModule, MatNativeDateModule, MatDatepickerModule]
+	imports: [
+		CommonModule,
+		MatButtonModule,
+		MatIconModule,
+		MatButtonToggleModule,
+		MatDialogModule,
+		MatNativeDateModule,
+		MatDatepickerModule,
+	]
 })
 export class HomeComponent implements OnInit {
 	public activities: Activity[] = [];
+
 	constructor(private router: Router, private dialog: MatDialog, private activityService: ActivityService) {
 		this.activities = this.activityService.getActivities();
 	}

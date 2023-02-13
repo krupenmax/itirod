@@ -34,7 +34,7 @@
 		<li *ngIf="activity.place">
 			<label>Место:</label>
 			{{activity.place}}
-			<a href="https://bobbyhadz.com/blog/typescript-get-current-date-and-time" target="_blank" title="Посмотреть на карте">
+			<a [href]="'https://www.google.com/maps/@' + activity.placeUrl + ',20z'" target="_blank" title="Посмотреть на карте">
 				<mat-icon>not_listed_location</mat-icon>
 			</a>
 		</li>

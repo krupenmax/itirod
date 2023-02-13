@@ -1,16 +1,20 @@
 <form [formGroup]="form">
 	<div>
 		<label>Категория</label>
-		<input formControlName="category">
+		<input formControlName="category"
+			[ngClass]="this.form.get('category')?.invalid && this.form.get('category')?.touched ? 'invalid' : ''">
 	</div>
 	<div>
 		<label>Описание</label>
-		<textarea type="text" formControlName="description"></textarea>
+		<textarea type="text" formControlName="description"
+			[ngClass]="this.form.get('description')?.invalid && this.form.get('description')?.touched ? 'invalid' : ''">
+		</textarea>
 	</div>
 	<div>
 		<label>Место</label>
-		<input formControlName="place">
-		<button mat-button><mat-icon>place</mat-icon></button>
+		<input formControlName="place"
+			[ngClass]="this.form.get('place')?.invalid && this.form.get('place')?.touched ? 'invalid' : ''">
+		<button mat-button (click)="addOnMap()" title="Поставить новую точку" [ngClass]="form.get('placeUrl')?.value ? 'marked' : ''"><mat-icon>place</mat-icon></button>
 	</div>
 	<label *ngIf="!file.value" for="file" class="file-input-label">
 		Загрузить фотографию
