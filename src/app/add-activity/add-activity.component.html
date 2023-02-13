@@ -23,7 +23,7 @@
 		<mat-icon>done</mat-icon>
 	</label>
 	<input (change)="test($event)" #file id="file" type="file" class="file-input" accept="image/*">
-	<mat-checkbox>Анонимно</mat-checkbox>
+	<mat-checkbox formControlName="isAnonymous">Анонимно</mat-checkbox>
 </form>
 
 <div class="footer">

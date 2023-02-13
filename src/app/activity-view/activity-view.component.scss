@@ -8,8 +8,6 @@
 ::ng-deep .mat-snack-bar-container {
 	background-color: #fff;
 	color: #130101;
-	display: flex;
-	justify-content: center;
 	font-weight: 500;
 }
 
@@ -33,6 +31,12 @@
 		width: 150px;
 		background-color: transparent;
 	}
+}
+
+.openstreet-button {
+	color: #4b48c9;
+	font-size: 10px;
+	background-color: transparent;
 }
 
 section {

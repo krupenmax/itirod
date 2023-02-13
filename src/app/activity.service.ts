@@ -9,17 +9,19 @@ import { UserService } from './user.service';
 export class ActivityService {
 	public activities: Activity[] = [];
   	constructor(private userService: UserService) {
-		this.activities.push({
-			category: "Кино",
-			description: "Очень большое описание о том, как я хочу сходить в кинои оно не влазит в одну строчку",
-			rate: 4.9,
-			place: "Дом кино",
-			imageName: "",
-			usersSubscribed: [],
-			date: new Date(2023, 1, 15, 19, 0),
-			placeUrl: "",
-			userOwner: this.userService.getUser() as User
-		});
+		for (let i = 0; i < 10; i++) {
+			this.activities.push({
+				category: "Кино",
+				description: "Очень большое описание о том, как я хочу сходить в кинои оно не влазит в одну строчку",
+				rate: 4.9,
+				place: "Дом кино",
+				imageName: "",
+				usersSubscribed: [],
+				date: new Date(2023, 1, 15, 19, 0),
+				placeUrl: { lat: 0, lng: 0 },
+				userOwner: this.userService.getUser() as User
+			});
+		}
 	}
 
 	public addActivity(activity: Activity): void {

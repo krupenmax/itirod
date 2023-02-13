@@ -34,9 +34,11 @@
 		<li *ngIf="activity.place">
 			<label>Место:</label>
 			{{activity.place}}
-			<a [href]="'https://www.google.com/maps/@' + activity.placeUrl + ',20z'" target="_blank" title="Посмотреть на карте">
+			<a *ngIf="activity.placeUrl" [href]="'https://www.google.com/maps/@' + activity.placeUrl.lat + ',' + activity.placeUrl.lng + ',20z'"
+				target="_blank" title="Посмотреть на карте Google">
 				<mat-icon>not_listed_location</mat-icon>
 			</a>
+			<button *ngIf="activity.placeUrl" mat-button class="openstreet-button" (click)="viewMap()">OpenStreetMap</button>
 		</li>
 		<li>
 			<label>Создатель:</label>

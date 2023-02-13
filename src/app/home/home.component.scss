@@ -4,6 +4,7 @@
 	align-items: center;
 	flex-direction: column;
 	height: 100%;
+	overflow: auto;
 }
 
 .navbar {
@@ -11,7 +12,7 @@
 	background-color: #fff;
 	display: flex;
 	height: 50px;
-	justify-content: left;
+	justify-content: space-between;
 
 	mat-button-toggle-group {
 		height: 50px;
@@ -34,6 +35,17 @@
 		}
 	}
 
+	button {
+		width: 200px;
+		font-size: 16px;
+		&:hover {
+			background-color: #b4c0f8;
+			border-radius: 0;
+			transition: 2s;
+			color: #fff;
+		}
+	}
+
 	::ng-deep .mat-button-toggle-checked {
 		background-color: #a3adde;
 		color: #fff;
@@ -49,17 +61,48 @@
 	}
 }
 
+::ng-deep .mat-snack-bar-container {
+	background-color: #fff;
+	color: #130101;
+	font-weight: 500;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+	color: #4b48c9;
+}
+
 section {
 	width: 60%;
 	min-width: 500px;
+	margin-bottom: 50px;
+}
+
+mat-paginator {
+	width: 100%;
+	// margin: 10px;
+	background-color: #a3adde;
+	color: #fff;
+
+	::ng-deep .mat-select-value {
+		color: #fff;
+	}
+
+	&:first-child {
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+
+	&:last-child {
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+	}
 }
 
 .main-container {
-	margin-top: 50px;
+	margin-top: 25px;
 	box-shadow: 0 4px 20px #0000002f;
 	border-radius: 8px;
 	background-color: #fff;
-	padding: 24px 40px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -86,7 +129,6 @@ section {
 	}
 
 	table {
-		margin-top: 25px;
 		width: 100%;
 		border-collapse: collapse;
 		border-radius: 8px;
@@ -96,6 +138,8 @@ section {
 			border-bottom: 2px solid #d8cece;
 			border-radius: 8px;
 			text-align: center;
+			animation-name: popOut;
+			animation-duration: .5s;
 		}
 
 		th:nth-child(3) {
@@ -112,6 +156,8 @@ section {
 
 		td:nth-child(2) {
 			text-align: left;
+			max-width: 100px;
+			overflow-x: auto;
 		}
 
 		td:first-child, td:nth-child(3), td:nth-child(5) {

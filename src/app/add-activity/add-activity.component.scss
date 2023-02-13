@@ -33,6 +33,7 @@ form {
 	}
 
 	textarea {
+		border-radius: 4px;
 		resize: none;
 		height: 100px;
 		font-size: 15px;
@@ -137,16 +138,4 @@ form {
 
 .invalid {
 	border: 1px solid red !important;
-}
-
-::ng-deep .mat-snack-bar-container {
-	background-color: #fff;
-	color: red;
-	display: flex;
-	justify-content: center;
-	font-weight: 500;
-}
-
-::ng-deep .mat-simple-snackbar-action {
-	color: #130101;
 }

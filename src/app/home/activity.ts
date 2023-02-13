@@ -8,6 +8,11 @@ export type Activity = {
 	imageName?: string,
 	usersSubscribed: User[],
 	date: Date,
-	placeUrl: string,
-	userOwner: User
+	placeUrl: PlaceUrl,
+	userOwner: User | undefined
+};
+
+export type PlaceUrl = {
+	lat: number,
+	lng: number
 };

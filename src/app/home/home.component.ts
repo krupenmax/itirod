@@ -11,6 +11,11 @@ import { ActivityService } from '../activity.service';
 import { ActivityViewComponent } from '../activity-view/activity-view.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AccountComponent } from '../account/account.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { SettingsComponent } from '../settings/settings.component';
+import { MessagesComponent } from '../messages/messages.component';
+import { UserService } from '../user.service';
 
 @Component({
 	selector: 'app-home',
@@ -26,12 +31,24 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 		MatDialogModule,
 		MatNativeDateModule,
 		MatDatepickerModule,
+		AccountComponent,
+		MatPaginatorModule,
+		SettingsComponent,
+		MessagesComponent
 	]
 })
 export class HomeComponent implements OnInit {
 	public activities: Activity[] = [];
+	public page = "home";
+	public pageSize = 5;
+	public pageIndex = 0;
 
-	constructor(private router: Router, private dialog: MatDialog, private activityService: ActivityService) {
+	constructor(
+		private router: Router,
+		private dialog: MatDialog,
+		private activityService: ActivityService,
+		private userService: UserService,
+	) {
 		this.activities = this.activityService.getActivities();
 	}
 
@@ -51,6 +68,24 @@ export class HomeComponent implements OnInit {
 			autoFocus: false,
 			width: "500px",
 		});
+	}
+
+	public changePage(e: any): void {
+		this.page = e.value;
+	}
+
+	public getPageActivities(): Activity[] {
+		return this.activities.slice(this.pageIndex * this.pageSize, this.pageIndex * this.pageSize + this.pageSize);
+	}
+
+	public handlePage(e: any): void {
+		this.pageIndex = e.pageIndex;
+		this.pageSize = e.pageSize;
+	}
+
+	public exit(): void {
+		this.userService.setUser(undefined);
+		this.router.navigateByUrl("");
 	}
 
 	ngOnInit(): void {

@@ -13,6 +13,7 @@ import { User } from '../user';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MapComponent } from '../map/map.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Activity } from '../home/activity';
 
 @Component({
 	selector: 'app-add-activity',
@@ -45,13 +46,14 @@ export class AddActivityComponent {
 			category: this.fb.control<string>("", Validators.required),
 			description: this.fb.control<string>("", Validators.required),
 			place: this.fb.control<string>("", Validators.required),
-			placeUrl: this.fb.control<string>("")
+			placeUrl: this.fb.control<string>(""),
+			isAnonymous: false
 		});
 	}
 
 	public addActivity(): void {
 		if (this.form.valid) {
-			const activity = {
+			const activity: Activity = {
 				category: this.form.get("category")?.value,
 				description: this.form.get("description")?.value,
 				place: this.form.get("place")?.value,
@@ -62,7 +64,14 @@ export class AddActivityComponent {
 				placeUrl: this.form.get("placeUrl")?.value,
 				userOwner: this.userService.getUser() as User
 			};
+			if (this.form.get("isAnonymous")) {
+				activity.userOwner = undefined;
+			}
 			this.activityService.addActivity(activity);
+			this.snackBar.open("Событие успешно добавлено", "ОК", {
+				verticalPosition: "bottom",
+				horizontalPosition: "right"
+			});
 			this.componentRef.close();
 		}
 		else {
@@ -78,7 +87,11 @@ export class AddActivityComponent {
 		});
 		dialogRef.afterClosed().subscribe((marker) => {
 			if (marker) {
-				this.form.get("placeUrl")?.patchValue(`${marker.lat},${marker.lng}`);
+				const placeUrl = {
+					lat: marker.lat,
+					lng: marker.lng
+				};
+				this.form.get("placeUrl")?.patchValue(placeUrl);
 			}
 		})
 	}

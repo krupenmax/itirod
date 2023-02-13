@@ -29,7 +29,7 @@ export class UserService {
 		return this.loggedUser;
 	}
 
-	public setUser(user: User): void {
+	public setUser(user: User | undefined): void {
 		this.loggedUser = user;
 	}
 }
