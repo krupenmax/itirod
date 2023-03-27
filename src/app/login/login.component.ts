@@ -10,6 +10,9 @@ import { RegistrationComponent } from '../registration/registration.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from "@angular/forms";
 import { UserService } from '../user.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { BackendService } from '../backend.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @Component({
@@ -24,8 +27,8 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 		CommonModule,
 		MatDialogModule,
 		ReactiveFormsModule,
-		MatSnackBarModule
-	]
+		MatSnackBarModule,
+	],
 })
 export class LoginComponent implements OnInit {
 	public isPasswordVisible = false;
@@ -37,7 +40,8 @@ export class LoginComponent implements OnInit {
 		private dialog: MatDialog,
 		private fb: FormBuilder,
 		private userService: UserService,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private backendService: BackendService
 		) {
 		this.isLogged = "untouched";
 		this.form = this.fb.group({

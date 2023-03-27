@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from "@angular/router";
-import { routes } from './app.routes';
 
 @Component({
     selector: 'app-root',

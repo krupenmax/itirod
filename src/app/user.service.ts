@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BackendService } from './backend.service';
 import { User } from './user';
 
 @Injectable({
@@ -8,13 +9,30 @@ export class UserService {
 	private users: User[] = [];
 	private loggedUser?: User;
 
-  	constructor() {
+  	constructor(private backendService: BackendService) {
+
 		this.users.push({
 			login: "123",
 			password: "123",
-			name: "123",
-			secondName: "123"
+			firstName: "123",
+			lastName: "123",
+			username: "123	",
+			email: "123"
 		});
+
+		this.backendService.users.get$().subscribe(response => {
+			response.users.forEach(user => {
+				const newUser: User = {
+					firstName: user.firstName,
+					lastName: user.lastName,
+					login: user.username,
+					username: user.username,
+					password: user.password,
+					email: user.email
+				};
+				this.users.push(newUser);
+			})
+		});;
 	}
 
 	public addUser(user: User): void {
@@ -31,5 +49,20 @@ export class UserService {
 
 	public setUser(user: User | undefined): void {
 		this.loggedUser = user;
+	}
+
+	public editUser(oldUser: User, newUser: User): void {
+		this.users.push(newUser);
+		this.users = this.users.filter((user) => oldUser !== user);
+		if (this.loggedUser === oldUser) {
+			this.loggedUser = newUser;
+		}
+		console.log(this.users);
+	}
+
+	public initUsers(users: User[]): void {
+		users.forEach(user => {
+			this.users.push(user);
+		})
 	}
 }

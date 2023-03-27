@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { Route } from "@angular/router";
 import { LoginGuard } from "./login.guard";
 

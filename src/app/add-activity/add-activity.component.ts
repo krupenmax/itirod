@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ActivityService } from '../activity.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';

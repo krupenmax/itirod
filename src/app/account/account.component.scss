@@ -5,13 +5,14 @@
 	background-color: #fff;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 	animation-duration: 1s;
 	animation-name: popOut;
 	min-width: 800px;
 	height: 100%;
 	margin-bottom: 50px;
-	padding: 24px 40px;
+	box-sizing: border-box;
 
 	@keyframes popOut {
 		0% {
@@ -24,9 +25,120 @@
 		}
 
 	}
+
+	::ng-deep .mat-button-toggle-checked {
+		background-color: #a3adde;
+		color: #fff;
+		transition: .5s;
+	}
 }
 
 h3 {
 	font-weight: 500;
-	font-size: 24px;
+	font-size: 20px;
+	border-bottom: 1px solid #ece5e5;
+	width: 100%;
+	text-align: center;
+	padding: 24px 0;
+	margin-bottom: 0;
+}
+
+section {
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: repeat(1, 1fr 3fr);
+
+	ul {
+		list-style: none;
+		border-right: 1px solid #ece5e5;
+		height: 100%;
+		box-sizing: border-box;
+		margin: 0;
+		width: 100%;
+		padding: 0;
+	}
+
+	li  {
+		width: 100%;
+	}
+}
+
+mat-button-toggle-group {
+	flex-direction: column;
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-direction: row;
+	padding: 24px 40px;
+	box-sizing: border-box;
+	animation-name: popOut;
+	animation-duration: .5s;
+
+	@keyframes popOut {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1	;
+		}
+	}
+
+	table {
+		width: 30%;
+	}
+
+	form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		margin-right: 24px;
+
+		div {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		div:not(div:first-of-type) {
+			margin-top: 12px;
+		}
+	}
+
+	input {
+		outline: none;
+		padding: 7px 8px;
+		border-radius: 4px;
+		border: 1px solid #d5cccc;
+		text-align: right;
+	}
+
+	button {
+		margin-top: 12px;
+		border: 1px solid #4b48c9;
+		color: #4b48c9;
+		width: 150px;
+		background-color: transparent;
+	}
+
+	.image-field {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		user-select: none;
+
+		button {
+			margin-top: 12px;
+			border: 1px solid #4b48c9;
+			color: #4b48c9;
+			font-size: 12px;
+			background-color: transparent;
+		}
+	}
 }

@@ -44,6 +44,10 @@
 			transition: 2s;
 			color: #fff;
 		}
+
+		mat-icon {
+			margin-right: 12px;
+		}
 	}
 
 	::ng-deep .mat-button-toggle-checked {
