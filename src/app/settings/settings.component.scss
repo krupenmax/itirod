@@ -1,17 +1,11 @@
 :host {
 	margin-top: 25px;
 	box-shadow: 0 4px 20px #0000002f;
-	border-radius: 8px;
-	background-color: #fff;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
 	animation-duration: 1s;
 	animation-name: popOut;
 	min-width: 800px;
 	height: 100%;
 	margin-bottom: 50px;
-	padding: 24px 40px;
 
 	@keyframes popOut {
 		0% {
@@ -26,7 +20,39 @@
 	}
 }
 
+section {
+	padding: 24px 40px;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	box-sizing: border-box;
+	border-radius: 8px;
+
+	&.night-mode {
+		background-color: var(--night-second-theme-color) !important;
+
+	}
+}
+
 h3 {
 	font-weight: 500;
 	font-size: 24px;
+}
+
+table {
+	width: 100%;
+	font-size: 20px;
+	font-weight: 500;
+
+	tr {
+		td:last-of-type {
+			text-align: right;
+		}
+
+		td {
+			padding-bottom: 32px;
+		}
+	}
 }

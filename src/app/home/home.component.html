@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" [ngClass]="getNightMode() ? 'night-mode' : ''">
 	<mat-button-toggle-group #toggler value="home" (change)="changePage($event)">
 		<mat-button-toggle [checked]="true" value="home">Главная</mat-button-toggle>
 		<mat-button-toggle value="account">Аккаунт</mat-button-toggle>
@@ -9,12 +9,13 @@
 </div>
 
 <section *ngIf="page === 'home'">
-	<div class="main-container">
+	<div class="main-container" [ngClass]="getNightMode() ? 'night-mode' : ''">
 		<mat-paginator [length]="activities.length"
             [pageSize]="pageSize"
             [pageSizeOptions]="[1, 3, 5, 10]"
 			[pageIndex]="pageIndex"
             aria-label="Select page"
+			[ngClass]="getNightMode() ? 'night-mode' : ''"
 			(page)="handlePage($event)">
 		</mat-paginator>
 		<table>
@@ -24,7 +25,7 @@
 				<th><mat-icon>stars</mat-icon></th>
 				<th></th>
 				<th>Кол-во людей</th>
-				<th><button mat-button (click)="addActivity()">Добавить</button></th>
+				<th><button mat-button (click)="addActivity()" [ngClass]="getNightMode() ? 'night-mode' : ''">Добавить</button></th>
 			</thead>
 			<tbody>
 				<tr *ngFor="let activity of getPageActivities()">
@@ -37,7 +38,7 @@
 						<mat-icon>star</mat-icon>
 					</td>
 					<td>{{activity.usersSubscribed.length}}</td>
-					<td><button mat-button (click)="viewActivity(activity)">Посмотреть</button></td>
+					<td><button mat-button (click)="viewActivity(activity)" [ngClass]="getNightMode() ? 'night-mode' : ''">Посмотреть</button></td>
 				</tr>
 			</tbody>
 		</table>

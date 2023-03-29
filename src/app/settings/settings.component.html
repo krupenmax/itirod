@@ -1,1 +1,14 @@
-<h3>Настройки</h3>
+<section [ngClass]="getNightMode() ? 'night-mode' : ''">
+	<h3>Настройки</h3>
+	<table>
+		<tbody [formGroup]="form">
+			<tr>
+				<td>Ночная тема</td>
+				<td>
+					<mat-slide-toggle (change)="handleNightMode($event.checked)" formControlName="isNightMode">
+					</mat-slide-toggle>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,8 +7,11 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountEditPopupComponent } from '../account-edit-popup/account-edit-popup.component';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { LayoutService } from '../services/layout.service';
+import { LogService } from '../services/log.service';
+import { UserService } from '../services/user.service';
+import { Log } from '../types/log';
+import { User } from '../types/user';
 
 
 @Component({
@@ -23,7 +26,7 @@ import { UserService } from '../user.service';
 		ReactiveFormsModule,
 		MatIconModule,
 		MatDialogModule,
-		MatSnackBarModule
+		MatSnackBarModule,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -31,14 +34,16 @@ export class AccountComponent {
 	public pageMode = "main";
 	public user?: User;
 	public form: FormGroup;
+	public notifications: Log[] = [];
 
 	constructor(
 		private userService: UserService,
 		private fb: FormBuilder,
 		private dialog: MatDialog,
 		private cdr: ChangeDetectorRef,
-		private snackBar: MatSnackBar
-		) {
+		private snackBar: MatSnackBar,
+		private logService: LogService,
+		private layoutService: LayoutService) {
 		this.user = this.userService.getUser();
 		this.form = this.fb.group({
 			name: this.fb.control<string>(this.user?.firstName as string),
@@ -46,9 +51,17 @@ export class AccountComponent {
 			nickname: this.fb.control<string>(this.user?.login as string),
 			email: this.fb.control<string>(this.user?.email as string)
 		});
+		this.notifications = this.logService.getLogs();
+	}
+
+	public getNightMode(): boolean {
+		return this.layoutService.getNightThemeConfig();
 	}
 
 	public handle(e: any): void {
+		if (this.pageMode === "notifications") {
+			this.logService.markAllAsChecked();
+		}
 		this.pageMode = e.value;
 	}
 
@@ -80,8 +93,16 @@ export class AccountComponent {
 				this.snackBar.open("Профиль успешно изменен.", "Ок", {
 					duration: 3000
 				});
+				this.logService.addLog("Профиль был отредактирован.", this.user?.login);
+				console.log(this.logService.getLogs());
 				this.cdr.detectChanges();
 			}
 		})
+	}
+
+	public handleNotificationCheck(notification: Log): void {
+		this.logService.markAsChecked(notification);
+		this.notifications = this.logService.getLogs();
+		this.cdr.detectChanges();
 	}
 }

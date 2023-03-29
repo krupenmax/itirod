@@ -3,7 +3,7 @@ import * as Leaflet from "leaflet";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Inject } from '@angular/core';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Activity } from '../home/activity';
+import { Activity } from '../types/activity';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({

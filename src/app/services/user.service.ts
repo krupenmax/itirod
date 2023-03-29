@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { User } from '../types/user';
 import { BackendService } from './backend.service';
-import { User } from './user';
 
 @Injectable({
   	providedIn: 'root'
@@ -57,7 +57,6 @@ export class UserService {
 		if (this.loggedUser === oldUser) {
 			this.loggedUser = newUser;
 		}
-		console.log(this.users);
 	}
 
 	public initUsers(users: User[]): void {

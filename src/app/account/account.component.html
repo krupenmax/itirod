@@ -1,37 +1,60 @@
-<h3>Профиль</h3>
-<section>
-	<mat-button-toggle-group #toggler (change)="handle($event)">
-		<mat-button-toggle [checked]="true" value="main">Основная</mat-button-toggle>
-		<mat-button-toggle value="account">Уведомления</mat-button-toggle>
-		<mat-button-toggle value="messages">Раздел 3</mat-button-toggle>
-		<mat-button-toggle value="settings">Раздел 4</mat-button-toggle>
-	  </mat-button-toggle-group>
-	<div class="profile-container">
-		<ng-container [ngSwitch]="pageMode">
-			<section *ngSwitchCase="'main'" class="main">
-				<form [formGroup]="form">
-					<div>
-						<label>Имя</label>
-						<input matInput formControlName="name" readonly>
+<div class="main-container" [ngClass]="getNightMode() ? 'night-mode' : ''">
+	<h3>Профиль</h3>
+	<section>
+		<mat-button-toggle-group #toggler (change)="handle($event)">
+			<mat-button-toggle [checked]="true" value="main">Основная</mat-button-toggle>
+			<mat-button-toggle value="notifications">Уведомления</mat-button-toggle>
+			<mat-button-toggle value="messages">Раздел 3</mat-button-toggle>
+			<mat-button-toggle value="settings">Раздел 4</mat-button-toggle>
+		</mat-button-toggle-group>
+		<div class="profile-container">
+			<ng-container [ngSwitch]="pageMode">
+				<section *ngSwitchCase="'main'" class="main">
+					<form [formGroup]="form">
+						<div>
+							<label>Имя</label>
+							<input matInput formControlName="name" readonly>
+						</div>
+						<div>
+							<label>Фамилия</label>
+							<input formControlName="secondName" readonly>
+						</div>
+						<div>
+							<label>Ник</label>
+							<input formControlName="nickname" readonly>
+						</div>
+						<div>
+							<label>Почта</label>
+							<input formControlName="email" readonly>
+						</div>
+					</form>
+					<div class="image-field">
+						<img src="../../assets/images/Doggy.png" width="80px" height="110px">
+						<button mat-button (click)="edit()"><mat-icon>edit</mat-icon></button>
 					</div>
-					<div>
-						<label>Фамилия</label>
-						<input formControlName="secondName" readonly>
-					</div>
-					<div>
-						<label>Ник</label>
-						<input formControlName="nickname" readonly>
-					</div>
-					<div>
-						<label>Почта</label>
-						<input formControlName="email" readonly>
-					</div>
-				</form>
-				<div class="image-field">
-					<img src="../../assets/images/Doggy.png" width="80px" height="110px">
-					<button mat-button (click)="edit()"><mat-icon>edit</mat-icon></button>
-				</div>
-			</section>
-		</ng-container>
-	</div>
-</section>
+				</section>
+				<section *ngSwitchCase="'notifications'" class="notifications">
+					<table>
+						<thead>
+							<th></th>
+							<th>Дата</th>
+							<th>Уведомление</th>
+							<th>Кем создано</th>
+						</thead>
+						<tbody>
+							<tr *ngFor="let notification of notifications">
+								<td (click)="handleNotificationCheck(notification)">
+									<mat-icon *ngIf="!notification.isChecked">notifications_active</mat-icon>
+									<mat-icon *ngIf="notification.isChecked">notifications_none</mat-icon>
+								</td>
+								<td>{{notification.date}}</td>
+								<td>{{notification.message}}</td>
+								<td>{{notification.createdBy}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</ng-container>
+		</div>
+	</section>
+</div>

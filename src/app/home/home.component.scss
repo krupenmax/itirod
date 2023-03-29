@@ -35,6 +35,28 @@
 		}
 	}
 
+	&.night-mode {
+		color: #fff;
+		background-color: var(--night-second-theme-color);
+
+		::ng-deep .mat-button-toggle-checked {
+			background-color: var(--night-third-theme-color) !important;
+		}
+
+		::ng-deep .mat-button-toggle-appearance-standard {
+			background: var(--night-second-theme-color);
+			color: #fff;
+		}
+
+		::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+				border-left: none !important;
+		}
+
+		::ng-deep .mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard {
+			border: none !important;
+		}
+	}
+
 	button {
 		width: 200px;
 		font-size: 16px;
@@ -100,6 +122,10 @@ mat-paginator {
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
 	}
+
+	&.night-mode {
+		background-color: var(--night-second-theme-color);
+	}
 }
 
 .main-container {
@@ -113,6 +139,14 @@ mat-paginator {
 	animation-duration: 1s;
 	animation-name: popOut;
 	min-width: 800px;
+
+	&.night-mode {
+		background-color: var(--night-main-theme-color) !important;
+
+		::ng-deep .mat-paginator-container {
+			background-color: var(--night-second-theme-color) !important;
+		}
+	}
 
 	@keyframes popOut {
 		0% {
@@ -137,13 +171,27 @@ mat-paginator {
 		border-collapse: collapse;
 		border-radius: 8px;
 
+		button {
+			border: 1px solid #4b48c9;
+			color: #4b48c9;
+			width: 117px;
+
+			&.night-mode {
+				border: 1px solid #fff !important;
+				color: #fff !important;
+			}
+		}
+
 		tr  {
-			border-top: 2px solid #d8cece;
-			border-bottom: 2px solid #d8cece;
 			border-radius: 8px;
 			text-align: center;
 			animation-name: popOut;
 			animation-duration: .5s;
+		}
+
+		tr:not(tr:last-of-type) {
+			border-top: 1px solid #d8cece;
+			border-bottom: 1px solid #d8cece;
 		}
 
 		th:nth-child(3) {
@@ -199,12 +247,6 @@ mat-paginator {
 
 		th:last-child {
 			text-align: right;
-		}
-
-		button {
-			border: 1px solid #4b48c9;
-			color: #4b48c9;
-			width: 117px;
 		}
 
 		mat-icon {

@@ -36,6 +36,13 @@ $Lab-theme: mat.define-light-theme((
 @import url("./assets/fonts/fonts.scss");
 @import "~leaflet/dist/leaflet.css";
 
+:root {
+	--night-main-theme-color: #464a4f;
+	--night-second-theme-color: #595d63;
+	--night-third-theme-color: #7c848f;
+	--default-main-theme-color: #d9dbf1;
+}
+
 html {
   	width: 100%;
 	min-height: 100%;
@@ -48,7 +55,6 @@ body {
 	color: #120000;
 	font-weight: 400;
 	letter-spacing: 0.005em;
-	background-color: #d9dbf1;
 	height: 100%;
 	min-height: 100%;
 	display: flex;

@@ -8,11 +8,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from "@angular/forms";
-import { UserService } from '../user.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import { BackendService } from '../backend.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { UserService } from '../services/user.service';
+import { BackendService } from '../services/backend.service';
 
 
 @Component({

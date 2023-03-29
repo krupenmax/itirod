@@ -3,11 +3,11 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { User } from '../types/user';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserService } from '../services/user.service';
 
 @Component({
 	selector: 'app-registration',

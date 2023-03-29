@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ActivityService } from '../activity.service';
+import { ActivityService } from '../services/activity.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { User } from '../types/user';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MapComponent } from '../map/map.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Activity } from '../home/activity';
+import { Activity } from '../types/activity';
+import { UserService } from '../services/user.service';
 
 @Component({
 	selector: 'app-add-activity',

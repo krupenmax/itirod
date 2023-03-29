@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Activity } from './home/activity';
-import { User } from './user';
+import { Activity } from '../types/activity';
+import { User } from '../types/user';
 import { UserService } from './user.service';
 
 @Injectable({

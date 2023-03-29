@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Activity } from './activity';
+import { Activity } from '../types/activity';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddActivityComponent } from '../add-activity/add-activity.component';
-import { ActivityService } from '../activity.service';
+import { ActivityService } from '../services/activity.service';
 import { ActivityViewComponent } from '../activity-view/activity-view.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,7 +15,8 @@ import { AccountComponent } from '../account/account.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SettingsComponent } from '../settings/settings.component';
 import { MessagesComponent } from '../messages/messages.component';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
+import { LayoutService } from '../services/layout.service';
 
 @Component({
 	selector: 'app-home',
@@ -48,12 +49,17 @@ export class HomeComponent implements OnInit {
 		private dialog: MatDialog,
 		private activityService: ActivityService,
 		private userService: UserService,
+		private layoutService: LayoutService
 	) {
 		this.activities = this.activityService.getActivities();
 	}
 
 	public route(url: string): void {
 		this.router.navigateByUrl(url);
+	}
+
+	public getNightMode(): boolean {
+		return this.layoutService.getNightThemeConfig();
 	}
 
 	public addActivity(): void {
