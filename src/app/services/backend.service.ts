@@ -10,17 +10,13 @@ export class BackendService {
 
 	constructor(private http: HttpClient) { }
 
-	// public get(url: string): Observable<User> {
-	// 	return this.http.get<User>(url);
-	// }
-
 	public post(url: string, user: User): void {
 		this.http.post<User>(url, user);
 	}
 
 	public readonly users = {
 		get$: (): Observable<DummyResponse> => {
-			return this.http.get<DummyResponse>("https://dummyjson.com/users?&select=firstName,lastName,password,username");
+			return this.http.get<DummyResponse>("https://dummyjson.com/users?&select=firstName,lastName,password,username", { withCredentials: true });
 		}
 	}
 }

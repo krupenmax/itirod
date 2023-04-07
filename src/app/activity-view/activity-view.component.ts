@@ -57,6 +57,7 @@ export class ActivityViewComponent {
 			horizontalPosition: "right",
 			duration: 3000
 		});
+		this.logService.addLog(`Отписка на событие "${this.activity.description}" оформлена.`, this.userService.getUser()?.login);
 		this.activity.usersSubscribed = this.activity.usersSubscribed.filter((user) => user !== this.userService.getUser());
 		this.componentRef.close();
 	}

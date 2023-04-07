@@ -4,8 +4,8 @@
 		<mat-button-toggle-group #toggler (change)="handle($event)">
 			<mat-button-toggle [checked]="true" value="main">Основная</mat-button-toggle>
 			<mat-button-toggle value="notifications">Уведомления</mat-button-toggle>
-			<mat-button-toggle value="messages">Раздел 3</mat-button-toggle>
-			<mat-button-toggle value="settings">Раздел 4</mat-button-toggle>
+			<mat-button-toggle value="subscribtions">Мои подписки</mat-button-toggle>
+			<mat-button-toggle value="activities">Мои события</mat-button-toggle>
 		</mat-button-toggle-group>
 		<div class="profile-container">
 			<ng-container [ngSwitch]="pageMode">
@@ -50,6 +50,52 @@
 								<td>{{notification.date}}</td>
 								<td>{{notification.message}}</td>
 								<td>{{notification.createdBy}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section *ngSwitchCase="'subscribtions'" class="subscribtions">
+					<table>
+						<thead>
+							<th>Категория</th>
+							<th width="200px">Описание</th>
+							<th colspan="2" width="80px"><mat-icon>stars</mat-icon></th>
+							<th>Кол-во людей</th>
+						</thead>
+						<tbody>
+							<tr *ngFor="let subscribtion of subscribtions" (click)="viewActivity(subscribtion)">
+								<td>{{subscribtion.category}}</td>
+								<td width="200px">{{subscribtion.description}}</td>
+								<td width="35px">
+									{{subscribtion.rate}}
+								</td>
+								<td width="45px">
+									<mat-icon>star</mat-icon>
+								</td>
+								<td>{{subscribtion.usersSubscribed.length}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section *ngSwitchCase="'activities'" class="subscribtions">
+					<table>
+						<thead>
+							<th>Категория</th>
+							<th width="200px">Описание</th>
+							<th colspan="2" width="80px"><mat-icon>stars</mat-icon></th>
+							<th>Кол-во людей</th>
+						</thead>
+						<tbody>
+							<tr *ngFor="let activity of ownedActivities" (click)="viewActivity(activity)">
+								<td>{{activity.category}}</td>
+								<td width="200px">{{activity.description}}</td>
+								<td width="35px">
+									{{activity.rate}}
+								</td>
+								<td width="45px">
+									<mat-icon>star</mat-icon>
+								</td>
+								<td>{{activity.usersSubscribed.length}}</td>
 							</tr>
 						</tbody>
 					</table>

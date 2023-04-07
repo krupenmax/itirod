@@ -12,6 +12,9 @@ import { LogService } from '../services/log.service';
 import { UserService } from '../services/user.service';
 import { Log } from '../types/log';
 import { User } from '../types/user';
+import { ActivityService } from '../services/activity.service';
+import { Activity } from '../types/activity';
+import { ActivityViewComponent } from '../activity-view/activity-view.component';
 
 
 @Component({
@@ -35,6 +38,8 @@ export class AccountComponent {
 	public user?: User;
 	public form: FormGroup;
 	public notifications: Log[] = [];
+	public subscribtions: Activity[];
+	public ownedActivities: Activity[];
 
 	constructor(
 		private userService: UserService,
@@ -43,7 +48,9 @@ export class AccountComponent {
 		private cdr: ChangeDetectorRef,
 		private snackBar: MatSnackBar,
 		private logService: LogService,
-		private layoutService: LayoutService) {
+		private layoutService: LayoutService,
+		private activityService: ActivityService
+		) {
 		this.user = this.userService.getUser();
 		this.form = this.fb.group({
 			name: this.fb.control<string>(this.user?.firstName as string),
@@ -52,6 +59,8 @@ export class AccountComponent {
 			email: this.fb.control<string>(this.user?.email as string)
 		});
 		this.notifications = this.logService.getLogs();
+		this.subscribtions = this.activityService.getUserSubscriptions(this.user as User);
+		this.ownedActivities = this.activityService.getOwnedActivities(this.user as User);
 	}
 
 	public getNightMode(): boolean {
@@ -63,6 +72,19 @@ export class AccountComponent {
 			this.logService.markAllAsChecked();
 		}
 		this.pageMode = e.value;
+	}
+
+	public viewActivity(activity: Activity): void {
+		const dialogRef = this.dialog.open(ActivityViewComponent, {
+			data: activity,
+			autoFocus: false,
+			width: "500px",
+		});
+
+		dialogRef.afterClosed().subscribe(() => {
+			this.subscribtions = this.activityService.getUserSubscriptions(this.user as User);
+			this.cdr.detectChanges();
+		})
 	}
 
 	public edit(): void {

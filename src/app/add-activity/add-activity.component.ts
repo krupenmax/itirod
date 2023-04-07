@@ -6,7 +6,7 @@ import { ActivityService } from '../services/activity.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { User } from '../types/user';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MapComponent } from '../map/map.component';
@@ -39,7 +39,8 @@ export class AddActivityComponent {
 		private componentRef: MatDialogRef<AddActivityComponent>,
 		private userService: UserService,
 		private dialog: MatDialog,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private datepipe: DatePipe
 	) {
 		this.form = this.fb.group({
 			category: this.fb.control<string>("", Validators.required),
@@ -59,11 +60,12 @@ export class AddActivityComponent {
 				rate: 0,
 				usersSubscribed: [],
 				imageName: "",
-				date: new Date(1, 1, 1),
+				date: this.datepipe.transform((new Date), "MM/dd/yyyy")?.toString() as string,
 				placeUrl: this.form.get("placeUrl")?.value,
-				userOwner: this.userService.getUser() as User
+				userOwner: this.userService.getUser() as User,
+				time: this.datepipe.transform((new Date), "h:mm:ss")?.toString() as string
 			};
-			if (this.form.get("isAnonymous")) {
+			if (this.form.value.isAnonymous) {
 				activity.userOwner = undefined;
 			}
 			this.activityService.addActivity(activity);

@@ -9,6 +9,13 @@
 					</mat-slide-toggle>
 				</td>
 			</tr>
+			<tr>
+				<td><button mat-button [ngClass]="getNightMode() ? 'night-mode' : ''" (click)="changePassword()">Сменить пароль</button></td>
+				<td><button mat-button [ngClass]="getNightMode() ? 'night-mode' : ''" (click)="changeEmail()">Сменить почту</button></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button mat-button [ngClass]="getNightMode() ? 'night-mode' : ''" (click)="deleteAccount()">Удалить аккаунт</button></td>
+			</tr>
 		</tbody>
 	</table>
 </section>

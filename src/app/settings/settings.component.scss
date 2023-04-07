@@ -3,7 +3,7 @@
 	box-shadow: 0 4px 20px #0000002f;
 	animation-duration: 1s;
 	animation-name: popOut;
-	min-width: 800px;
+	min-width: 500px;
 	height: 100%;
 	margin-bottom: 50px;
 
@@ -32,7 +32,7 @@ section {
 
 	&.night-mode {
 		background-color: var(--night-second-theme-color) !important;
-
+		border: 1px solid #d8cece;
 	}
 }
 
@@ -46,13 +46,46 @@ table {
 	font-size: 20px;
 	font-weight: 500;
 
-	tr {
+	tr:first-of-type {
 		td:last-of-type {
 			text-align: right;
 		}
+	}
 
-		td {
-			padding-bottom: 32px;
+	td {
+		padding-bottom: 32px;
+	}
+
+	// tr:nth-child(2) {
+	// 	td {
+	// 		text-align: right;
+	// 	}
+	// }
+
+	tr:nth-child(2) {
+		td:nth-child(1) {
+			text-align: left;
 		}
+
+		td:nth-child(2) {
+			text-align: right;
+		}
+	}
+
+	tr:nth-child(3) {
+		td {
+			text-align: right;
+		}
+	}
+}
+
+button {
+	border: 1px solid #4b48c9;
+	color: #4b48c9;
+	width: 150px;
+
+	&.night-mode {
+		border: 1px solid #fff !important;
+		color: #fff !important;
 	}
 }

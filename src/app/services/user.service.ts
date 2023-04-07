@@ -32,6 +32,7 @@ export class UserService {
 				};
 				this.users.push(newUser);
 			})
+			console.log(response);
 		});;
 	}
 
@@ -45,6 +46,11 @@ export class UserService {
 
 	public getUser(): User | undefined {
 		return this.loggedUser;
+	}
+
+	public deleteUser(): void {
+		this.users = this.users.filter((user) => user !== this.loggedUser);
+		this.loggedUser = undefined;
 	}
 
 	public setUser(user: User | undefined): void {
@@ -62,6 +68,14 @@ export class UserService {
 	public initUsers(users: User[]): void {
 		users.forEach(user => {
 			this.users.push(user);
+		})
+	}
+
+	public changePassword(newPassword: string, user: User): void {
+		this.users.forEach((item) => {
+			if (item === user) {
+				item.password = newPassword;
+			}
 		})
 	}
 }

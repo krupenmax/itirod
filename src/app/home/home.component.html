@@ -2,7 +2,7 @@
 	<mat-button-toggle-group #toggler value="home" (change)="changePage($event)">
 		<mat-button-toggle [checked]="true" value="home">Главная</mat-button-toggle>
 		<mat-button-toggle value="account">Аккаунт</mat-button-toggle>
-		<mat-button-toggle value="messages">Сообщения</mat-button-toggle>
+		<!-- <mat-button-toggle value="messages">Сообщения</mat-button-toggle> -->
 		<mat-button-toggle value="settings">Настройки</mat-button-toggle>
 	  </mat-button-toggle-group>
 	  <button mat-button (click)="exit()"><mat-icon>exit_to_app</mat-icon>Выйти</button>
@@ -18,7 +18,7 @@
 			[ngClass]="getNightMode() ? 'night-mode' : ''"
 			(page)="handlePage($event)">
 		</mat-paginator>
-		<table>
+		<table [ngClass]="getNightMode() ? 'night-mode' : ''">
 			<thead>
 				<th>Категория</th>
 				<th>Описание</th>
@@ -47,6 +47,7 @@
             [pageSizeOptions]="[1, 3, 5, 10]"
 			[pageIndex]="pageIndex"
             aria-label="Select page"
+			[ngClass]="getNightMode() ? 'night-mode' : ''"
 			(page)="handlePage($event)">
 		</mat-paginator>
 	</div>

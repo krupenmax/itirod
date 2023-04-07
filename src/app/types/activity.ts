@@ -7,9 +7,10 @@ export type Activity = {
 	place?: string,
 	imageName?: string,
 	usersSubscribed: User[],
-	date: Date,
+	date: string,
 	placeUrl: PlaceUrl,
-	userOwner: User | undefined
+	userOwner: User | undefined,
+	time: string
 };
 
 export type PlaceUrl = {
