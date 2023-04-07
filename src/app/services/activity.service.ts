@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 export class ActivityService {
 	public activities: Activity[] = [];
   	constructor(private userService: UserService, private datepipe: DatePipe) {
-		for (let i = 0; i < 10; i++) {
+		for (let i = 0; i < 3; i++) {
 			this.activities.push({
 				category: "Кино",
 				description: "Очень большое описание о том, как я хочу сходить в кинои оно не влазит в одну строчку",

@@ -5,6 +5,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../services/user.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { User } from '../types/user';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,7 +16,12 @@ import { User } from '../types/user';
 })
 export class ChangePasswordComponent {
 	public form: FormGroup
-	constructor(private userService: UserService, private fb: FormBuilder, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<ChangePasswordComponent>) {
+	constructor(
+		private userService: UserService,
+		private fb: FormBuilder,
+		private snackBar: MatSnackBar,
+		private dialogRef: MatDialogRef<ChangePasswordComponent>,
+		private logService: LogService) {
 		this.form = this.fb.group({
 			oldPassword: this.fb.control<string>("", Validators.required),
 			newPassword: this.fb.control<string>("", Validators.required),
@@ -33,6 +39,7 @@ export class ChangePasswordComponent {
 						horizontalPosition: "center",
 						duration: 3000,
 					});
+					this.logService.addLog("Пароль был изменен");
 					this.dialogRef.close();
 				}
 				else {

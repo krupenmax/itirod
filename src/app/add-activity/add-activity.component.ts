@@ -13,6 +13,7 @@ import { MapComponent } from '../map/map.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Activity } from '../types/activity';
 import { UserService } from '../services/user.service';
+import { LogService } from '../services/log.service';
 
 @Component({
 	selector: 'app-add-activity',
@@ -40,7 +41,8 @@ export class AddActivityComponent {
 		private userService: UserService,
 		private dialog: MatDialog,
 		private snackBar: MatSnackBar,
-		private datepipe: DatePipe
+		private datepipe: DatePipe,
+		private logService: LogService,
 	) {
 		this.form = this.fb.group({
 			category: this.fb.control<string>("", Validators.required),
@@ -73,6 +75,7 @@ export class AddActivityComponent {
 				verticalPosition: "bottom",
 				horizontalPosition: "right"
 			});
+			this.logService.addLog("Событие добавлено.", this.userService.getUser()?.firstName);
 			this.componentRef.close();
 		}
 		else {
